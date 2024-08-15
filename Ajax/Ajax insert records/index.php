@@ -16,7 +16,7 @@
             <td id="table-load">
                 First Name: <input type="text" name="" id="fname">
                 Last Name: <input type="text" name="" id="lname">
-                <input type="button" id="save-button" value="Load Data">
+                <input type="button" id="save-button" value="Save Data">
             </td>
         </tr>
         <tr>

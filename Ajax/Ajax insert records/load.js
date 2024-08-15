@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
-  document.querySelector("#load-button").addEventListener("click", ajaxFun);
+  document.querySelector("#save-button").addEventListener("click", ajaxFun);
 
   async function ajaxFun(e) {
     try {
@@ -10,4 +10,5 @@ window.addEventListener("DOMContentLoaded", function () {
       console.log("there is an error");
     }
   }
+  ajaxFun();
 });
