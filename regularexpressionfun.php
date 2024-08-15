@@ -1,18 +1,19 @@
+
 <pre>
 <?php
 /**
  * with this function we can replace
  * and we can split it
  * and last one added backslash before the special charecter
- * 
- * 
+ * -----------------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------------
  * preg_replace(pattern, replacement, string, limit)
  * preg_split(pattern, string, limit, flags)
  * preg_quote(string, delimiter, limit)
  */
 
 
- $string = "<h1>php is the web scripting php language of choice</h1>";
+$string = "<h1>php is the web scripting php language of choice</h1>";
 
 $pattern = "/PHP/i";
 $replacement = "JavaScript";
@@ -42,7 +43,6 @@ echo "<br><br>";
 $string2 = "$5.99";
 echo preg_quote($string2); // it will add \ for every special charecter
 
-
 echo "<br><br>";
 $string = "php is the web scripting    php language of choice";
 $split = preg_split("/[\s]+/i", $string); // it will devite it
@@ -54,8 +54,23 @@ $split = preg_split("/[\s]+/i", $string, 3); // it will device the it array
 print_r($split);
 
 echo "<br><br>";
-$string = "php is the web scripting    php language of choice";
+$string = "php is the web scripting php language of choice";
 $split = preg_split("/web|of/i", $string); // it will device the it array
+print_r($split);
+
+echo "<br><br>";
+$string = "https://bijoy.dev/portfolio/";
+$split = preg_split("/\//i", $string); // it will device the it array
+print_r($split);
+
+echo "<br><br>";
+$string = "https://bijoy.dev/portfolio/";
+$split = preg_split("/\//i", $string, -1, PREG_SPLIT_NO_EMPTY); // it will device the it array
+print_r($split);
+
+echo "<br><br>";
+$string = "php hypertext language programming";
+$split = preg_split("/ /i", $string, -1, PREG_SPLIT_OFFSET_CAPTURE); // it will device the it array
 print_r($split);
 ?>
 </pre>
