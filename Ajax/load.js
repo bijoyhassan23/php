@@ -1,9 +1,31 @@
 window.addEventListener("DOMContentLoaded", function () {
+  const getModal = document.getElementById("modal");
+  const getEditFfild = document.getElementById("edit-fname");
+  const getEditLfild = document.getElementById("edit-lname");
+  const getSaveEditBtn = document.getElementById("edit-save-btn");
+  const getSearchFild = document.getElementById("search");
+
+  let tempId;
+
+  getSearchFild.addEventListener("input", ajaxFun);
+
+  document.getElementById("close-modal").addEventListener("click", closemodal);
+
+  function closemodal() {
+    getModal.setAttribute("active-status", false);
+  }
+
   document.querySelector("#save-button").addEventListener("click", clickFun);
 
   async function ajaxFun() {
     try {
-      const response = await fetch("ajax-load.php");
+      const tempFrom = new FormData();
+      tempFrom.append("searchData", getSearchFild.value);
+      const option = {
+        method: "POST",
+        body: tempFrom,
+      };
+      const response = await fetch("ajax-load.php", option);
       const data = await response.text();
       document.querySelector("#table-data").innerHTML = data;
     } catch {
@@ -44,8 +66,8 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   document.addEventListener("click", function (ele) {
-    if (confirm("Do you really want to delete this data")) {
-      if (ele.target.classList.contains("deleted-btn")) {
+    if (ele.target.classList.contains("deleted-btn")) {
+      if (confirm("Do you really want to delete this data")) {
         let options = {
           method: "POST",
           headers: {
@@ -71,5 +93,47 @@ window.addEventListener("DOMContentLoaded", function () {
           });
       }
     }
+
+    if (ele.target.classList.contains("edit-btn")) {
+      getModal.setAttribute("active-status", true);
+      let getId = ele.target.getAttribute("data-eid");
+      tempId = getId;
+
+      const fromFild = new FormData();
+      fromFild.append("sid", getId);
+      fetch("getFildValue.php", {
+        method: "POST",
+        body: fromFild,
+      })
+        .then((x) => x.json())
+        .then((y) => {
+          getEditFfild.value = y["first_name"];
+          getEditLfild.value = y["last_name"];
+        });
+    }
   });
+
+  getSaveEditBtn.addEventListener("click", editFun);
+
+  function editFun() {
+    const fromFilds = new FormData();
+
+    fromFilds.append("sid", tempId);
+    fromFilds.append("sfname", getEditFfild.value);
+    fromFilds.append("slname", getEditLfild.value);
+
+    fetch("ajax-update.php", {
+      method: "POST",
+      body: fromFilds,
+    })
+      .then((x) => x.text())
+      .then((y) => {
+        if (y == "true") {
+          closemodal();
+          ajaxFun();
+        } else {
+          alert("There is an issue with data update");
+        }
+      });
+  }
 });

@@ -1,8 +1,17 @@
 <?php
 
+if(isset($_POST['searchData'])){
+    if($_POST['searchData'] != '' && $_POST['searchData'] != ' '){
+        $searchText = preg_replace('/\s*$/i', '', $_POST['searchData']);
+        $searchText = preg_replace('/\s+/i', '.*|', $searchText);
+        $searchData = "WHERE first_name REGEXP '{$searchText}' OR last_name REGEXP '{$searchText}'";
+    }else{
+        $searchData = '';
+    }
+}
 
 $conn = mysqli_connect("localhost", "root", "", "sql_test") or die("Connection Failed");
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM students {$searchData}";
 $result = mysqli_query($conn, $sql);
 
 $output = "";
