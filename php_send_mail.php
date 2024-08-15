@@ -4,7 +4,7 @@
  * mail(to, subject, message, headers)
  * Send multiple same email to multiple emails
  * make sure do not set gap between From and : this becacuse of this you mail will not send
- * we can't put array on header, so we need to make it a simple string
+ * we can't put array on header, so we need to make it a simple string and everything will stay in new line
  */
 
  $to = "bijoyhassan23@gmail.com, bijoyhassanoffice@gmail.com, bijoysaif23@gmail.com";
@@ -20,12 +20,11 @@
 
 $header = implode("\r\n", $header);
 
-// if(mail($to, $subject, $message, $header)){
-//     echo "Email sent successfully";
-// }else{
-//     echo "Failed to send email";
-// }
+if(mail($to, $subject, $message, $header)){
+    echo "Email sent successfully";
+}else{
+    echo "Failed to send email";
+}
 
-echo $header;
 ?>
 </pre>
