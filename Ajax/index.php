@@ -35,6 +35,12 @@
         </tr>
     </table>
 
+    <div id="modal">
+        <div id="modal-from">
+            <h2>Edit From</h2>
+        </div>
+    </div>
+
     <script src="load.js"></script>
 </body>
 </html>

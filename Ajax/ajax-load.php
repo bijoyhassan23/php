@@ -12,13 +12,17 @@ if(mysqli_num_rows($result) > 0){
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     ';
 
     while($row = mysqli_fetch_assoc($result)){
         $output .= "<tr>
-                        <th> {$row['id']} </th>
-                        <th>{$row['first_name']} {$row['last_name']}</th>
+                        <td> {$row['id']} </td>
+                        <td>{$row['first_name']} {$row['last_name']}</td>
+                        <td><input type='button' class='edit-btn' data-eid='{$row['id']}' value='Edit'></td>
+                        <td><input type='button' class='deleted-btn' data-id='{$row['id']}' value='Delete'></td>
                     </tr>";
     }
 
