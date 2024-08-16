@@ -49,6 +49,19 @@
             transform: translate(50%, -50%);
             cursor: pointer;
         }
+
+        span.pagi-nation {
+            border: solid 1px black;
+            border-radius: 3px;
+            padding: 3px 5px;
+            background: #0000000d;
+            cursor: pointer;
+            margin: 0px 5px;
+        }
+
+        span.pagi-nation.active{
+            background: #0000005c;
+        }
     </style>
 </head>
 <body>

@@ -7,7 +7,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let tempId;
 
-  getSearchFild.addEventListener("input", ajaxFun);
+  getSearchFild.addEventListener("input", function () {
+    ajaxFun();
+  });
 
   document.getElementById("close-modal").addEventListener("click", closemodal);
 
@@ -17,10 +19,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector("#save-button").addEventListener("click", clickFun);
 
-  async function ajaxFun() {
+  async function ajaxFun(page = 1) {
     try {
       const tempFrom = new FormData();
       tempFrom.append("searchData", getSearchFild.value);
+      tempFrom.append("page", page);
+
       const option = {
         method: "POST",
         body: tempFrom,
@@ -110,6 +114,11 @@ window.addEventListener("DOMContentLoaded", function () {
           getEditFfild.value = y["first_name"];
           getEditLfild.value = y["last_name"];
         });
+    }
+
+    if (ele.target.classList.contains("pagi-nation")) {
+      let getPage = ele.target.getAttribute("page-no");
+      ajaxFun(getPage);
     }
   });
 
