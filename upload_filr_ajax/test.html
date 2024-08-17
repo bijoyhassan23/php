@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Display Example</title>
+    <style>
+      #fileContent {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        max-width: 100%;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" id="fileInputx" />
+    <input type="file" id="fileInput" />
+    <input type="file" id="fileInputy" />
+    <button onclick="displayFile()">Display File</button>
+    <div id="fileContent"></div>
+
+    <script>
+      const reader = new FileReader();
+      function displayFile() {
+        const fileInput = document.getElementById("fileInput");
+        const fileContent = document.getElementById("fileContent");
+
+        const file = fileInput.files[0];
+
+        if (file.type.startsWith("image/")) {
+          // If the file is an image, use readAsDataURL
+          reader.readAsDataURL(file);
+          reader.onload = function (e) {
+            fileContent.innerHTML = `<img src="${e.target.result}" alt="Selected Image">`;
+            console.log(e);
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
