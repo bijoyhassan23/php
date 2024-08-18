@@ -68,6 +68,9 @@ echo "<br><br>------------------------------------------------------------------
 /**
  * Class output view
  */
+
+ echo "--Class output view:<br><br>";
+
 var_export($bi);
 echo "<br>";
 var_dump($bi);
@@ -78,6 +81,9 @@ echo "<br><br>------------------------------------------------------------------
 /**
  * Static Called
  */
+
+ echo "--Static Called:<br><br>";
+
 echo($bi->static_sum());
 echo "<br>";
 echo(calculation::static_sum()) ;
@@ -87,6 +93,9 @@ echo "<br><br>------------------------------------------------------------------
 /**
  * Inheritance
  */
+
+ echo "--Inheritance:<br><br>";
+ 
 class child extends calculation{
 function __construct(){
     parent::__construct(10); // run the parent class constructor
@@ -106,6 +115,7 @@ echo "<br><br>------------------------------------------------------------------
 /**
  * Storing a class on a variable
  */
+echo "--Storing a class on a variable:<br><br>";
 $o;
 function callFun(){
 $GLOBALS['o'] = new class{
@@ -129,6 +139,7 @@ echo "<br><br>------------------------------------------------------------------
  * Abstrct class
  * use this for security like you can't craete say funcion the main fuction
  */
+echo "--Abstrct class:<br><br>";
 
 abstract class pclass{
 abstract public function say($a, $b);
@@ -150,6 +161,7 @@ echo "<br><br>------------------------------------------------------------------
  * Interface
  * Use inharitate multiple interface (it's not class)
  */
+echo "--Interface:<br><br>";
 
 interface A{
     function a1($a);
@@ -181,7 +193,7 @@ echo "<br><br>------------------------------------------------------------------
  * Late static
  * It will update child data
  */
-
+echo "--Late static:<br><br>";
  class personal{
     public static $name = "Yahoo";
     public function say(){
@@ -206,10 +218,37 @@ echo "<br><br>------------------------------------------------------------------
 
 
 
+/**
+ * Method chaining
+ * You must need to return the class $this
+ */
+
+ echo "--Method chaining:<br><br>";
+
+ class abc{
+    public function first(){
+        echo "This is the First function echo  <br>";
+        return $this;
+    }
+    public function second(){
+        echo "This is the Second function echo <br>";
+        return $this;
+    }
+    public function third(){
+        echo "This is the Third function echo  <br>";
+        return "This is the last return value";
+    }
+ }
+
+ $test = new abc();
+
+echo( $test->first()->second()->third());
+
+echo "<br><br>--------------------------------------------------------------------------------<br><br>";
 
 
 
-
+echo "<br><br>--------------------------------------------------------------------------------<br><br>";
 
 ?>
 </pre>
