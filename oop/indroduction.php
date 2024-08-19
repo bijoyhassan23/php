@@ -5,6 +5,7 @@
  * privet you can't access out side of class
  * proteced you can't access this out side of class but you can access this on the extended class
  * static you can access this without call the class and you can update this variable any time (it will work like you assin a variable declare outside and you are updating it)
+ * :: scop rezulation oparator
  */
 
 class calculation{
@@ -246,7 +247,36 @@ echo( $test->first()->second()->third());
 
 echo "<br><br>--------------------------------------------------------------------------------<br><br>";
 
+/**
+ * Copy by refarence
+ * Normaly we need to rite & to use referance value
+ * But on the classes everything is autometically refarence
+ * 
+ * Clone with this we can clone the other obj
+ * clone will not copy the sub object
+ */
 
+ echo "--Copy by refarence:<br><br>";
+$a = 5;
+$b = &$a;
+$b = 10;
+echo $a;
+
+echo "<br><br>";
+
+class student{
+    public $name;
+    public $course;
+
+    public function __construct($n){
+        $this->name = $n;
+    }
+}
+
+$student1 = new student("bijoy");
+$student2 = clone $student1;
+$student2->name = "Ram kumar";
+echo $student1->name;
 
 echo "<br><br>--------------------------------------------------------------------------------<br><br>";
 

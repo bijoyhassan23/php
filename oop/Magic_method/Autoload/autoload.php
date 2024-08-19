@@ -13,3 +13,16 @@ spl_autoload_register('auto_load_fun');
 
 $test = new first();
 $test1 = new second();
+
+
+
+
+
+
+
+
+
+
+
+
+
