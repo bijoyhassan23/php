@@ -68,7 +68,12 @@
             // echo "<pre>";
             // print_r($result);
             // echo "</pre>";
-            // exit;
+
+
+            print_r($result);
+            echo "</pre>";
+
+            exit;
             if (count($result) > 0) {
              
               /* Start the session */
