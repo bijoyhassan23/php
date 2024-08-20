@@ -289,4 +289,18 @@ $obj10 = new abc10();
 $obj10_1 = clone $obj10;
 
 echo "<br><br>--------------------------------------------------------------------------------<br><br>";
+/**
+ * __invoke() this full will call, if you call the object like a fuction
+ */
+echo "--(__invoke) Methods:<br><br>";
 
+class abc11{
+    public function __invoke(){
+        return "Your invoke function is ";
+    }
+}
+
+$obj11 = new abc11();
+echo ($obj11()); // you call the object like a function
+
+echo "<br><br>--------------------------------------------------------------------------------<br><br>";

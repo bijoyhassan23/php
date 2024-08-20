@@ -279,6 +279,13 @@ $student2->name = "Ram kumar";
 echo $student1->name;
 
 echo "<br><br>--------------------------------------------------------------------------------<br><br>";
+/**
+ * rename the class
+ * you can use both names
+ */
+class_alias("student", "okayx");
 
+$setudentx = new okayx("Rakib");
+echo $setudentx->name;
 ?>
 </pre>
